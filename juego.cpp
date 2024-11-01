@@ -49,7 +49,7 @@ void jugar(string jugadores[], int resultado[][3], int cantJugadores) {
   system("cls");
   for (int rondaActual = 1; rondaActual <= 3; rondaActual++) {
     for (int jugador = 0; jugador < cantJugadores; jugador++) {
-      jugarUnaRonda(jugadores[jugador], resultado[jugador], rondaActual);
+      jugarUnaRonda(jugadores[jugador], resultado[jugador], rondaActual,0);
     }
   }
 }
@@ -57,16 +57,16 @@ void jugar(string jugadores[], int resultado[][3], int cantJugadores) {
 void partidaUnJugador(string jugador, int resultado[3]) {
   system("cls");
   for (int rondaActual = 1; rondaActual <= 3; rondaActual++) {
-    jugarUnaRonda(jugador, resultado, rondaActual);
+    jugarUnaRonda(jugador, resultado, rondaActual,0);
   }
 }
 
 void partidaDosJugadores(string jugador1, string jugador2, int resultado1[3],
-                         int resultado2[3]) {
+                         int resultado2[3],int modoPC) {
   system("cls");
   for (int rondaActual = 1; rondaActual <= 3; rondaActual++) {
-    jugarUnaRonda(jugador1, resultado1, rondaActual);
-    jugarUnaRonda(jugador2, resultado2, rondaActual);
+    jugarUnaRonda(jugador1, resultado1, rondaActual,0);
+    jugarUnaRonda(jugador2, resultado2, rondaActual,modoPC);
   }
 }
 
@@ -192,9 +192,13 @@ void determinarGanadorUnJugador (int puntaje, string nombre, int rankingPuntos[6
   } 
 }
 
+int continuaPC() {
+ int continuajuego;
+ continuajuego=rand() % 2 + 1;
+  return continuajuego;
+}
 
-
-void jugarUnaRonda(string nombre, int resultado[3], int numeroDeRonda) {
+void jugarUnaRonda(string nombre, int resultado[3], int numeroDeRonda,int modoPC) {
   // M-Juega una ronda
   int dadosJuego[5], dadosBloqueadores[2];
   tirarNDados(dadosBloqueadores, 2);
@@ -244,7 +248,16 @@ void jugarUnaRonda(string nombre, int resultado[3], int numeroDeRonda) {
     }
 
     int jugadorContinua;  // 1- Continua. 2-No Continua
-    cin >> jugadorContinua;
+
+    if (modoPC>0) {
+      jugadorContinua= continuaPC();
+      cout<<jugadorContinua<<endl;
+      system("pause");
+    }
+
+    else {
+      cin >> jugadorContinua;
+    }
 
     if (jugadorContinua == 2) {
       seguirTirando = false;
