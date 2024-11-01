@@ -10,8 +10,9 @@ void mostrarDados(int vDados[], int cantidad);
 int calcularPuntaje(int vDados[], int dadosBloqueadores[], int &cantidad);
 void jugar(std::string jugadores[], int resultado[][3], int cantJugadores);
 void partidaUnJugador(std::string jugador, int resultado[3]);
-void partidaDosJugadores(std::string jugador1, std::string jugador2, int resultado1[3],int resultado2[3]);
-void jugarUnaRonda(std::string nombre, int resultado[3], int numeroDeRonda);
+void partidaDosJugadores(std::string jugador1, std::string jugador2, int resultado1[3],int resultado2[3],int modoPC);
+void jugarUnaRonda(std::string nombre, int resultado[3], int numeroDeRonda,int modoPC);
+int continuaPC();
 
 std::string pedirNombre(std::string jugador);
 
