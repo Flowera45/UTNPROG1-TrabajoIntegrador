@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <windows.h>
 
 using namespace std;
 
@@ -252,7 +253,7 @@ void jugarUnaRonda(string nombre, int resultado[3], int numeroDeRonda,int modoPC
     if (modoPC>0) {
       jugadorContinua= continuaPC();
       cout<<jugadorContinua<<endl;
-      system("pause");
+       Sleep(2000);
     }
 
     else {
