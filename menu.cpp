@@ -14,8 +14,9 @@ int opcionesDelJuego() {
   cout << "-----------------------" << endl;
   cout << "1 - MODO UN JUGADOR" << endl;
   cout << "2 - MODO DOS JUGADORES" << endl;
-  cout << "3 - ESTADÍSTICAS" << endl;
-  cout << "4 - CRÉDITOS" << endl;
+  cout << "3 - MODO CONTRA PC" << endl;
+  cout << "4 - ESTADÍSTICAS" << endl;
+  cout << "5 - CRÉDITOS" << endl;
   cout << "-----------------------" << endl;
   cout << "0- SALIR" << endl;
   cout << "-----------------------" << endl << endl;
@@ -95,19 +96,50 @@ void ejecutarOpciones(int opcion, int &puntajeGanador, string &nombreGanador,
 
       break;
     }
-    case 3:
+    case 3: {
+      // funciones para jugar contra PC
+      string jugador1 = pedirNombre("Jugador 1");
+      string jugador2 = "PC";
+
+      int resultadosJ1[3]{0, 0, 0};
+      int resultadosJ2[3]{0, 0, 0};
+
+      partidaDosJugadores(jugador1, jugador2, resultadosJ1, resultadosJ2,1);
+
+      int puntajeJugador1 = obtenerPuntajeTotal(resultadosJ1);
+      int puntajeJugador2 = obtenerPuntajeTotal(resultadosJ2);
+
+      cout << "Jugador: " << jugador1 << endl;
+      cout << "Puntaje Total: " << puntajeJugador1 << endl;
+
+      cout << "Jugador: " << jugador2 << endl;
+      cout << "Puntaje Total: " << puntajeJugador2 << endl;
+
+      determinarGanadorDosJugadores(puntajeJugador1, jugador1, puntajeJugador2,
+                                    jugador2);
+
+      ingresarEstadistica(puntajeJugador1, jugador1, rankingPuntos,
+                          rankingNombres);
+
+
+      cout << endl << "Presione una tecla para volver al menú...";
+      system("Pause>nul");
+
+      break;
+    }
+    case 4:
       // funciones para estadisticas
       mostrarEstadistica(rankingPuntos, rankingNombres);
       cout << endl << "Presione una tecla para volver al menú...";
       system("Pause>nul");
 
       break;
-    case 4:
+    case 5:
       mostrarCreditos();
       cout << endl << "Presione una tecla para volver al menú...";
       system("Pause>nul");
       break;
-    case 5: {
+    case 6: {
       // MODO TORNEO: 8 JUGADORES ENFRENTADOS ALEATOREAMENTE EN ELMINATORIAS
       // PUEDEN SER HUMANOS O PC
 
